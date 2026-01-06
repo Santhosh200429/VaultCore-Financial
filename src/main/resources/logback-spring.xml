@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true">
+
+    <!-- ============================= -->
+    <!-- LOG DIRECTORY (RUNTIME) -->
+    <!-- ============================= -->
+    <property name="LOG_PATH" value="logs"/>
+
+    <!-- ============================= -->
+    <!-- CONSOLE APPENDER -->
+    <!-- ============================= -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>
+                %d{yyyy-MM-dd HH:mm:ss} %-5level [%thread] %logger - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <!-- ============================= -->
+    <!-- AUDIT FILE APPENDER -->
+    <!-- ============================= -->
+    <appender name="AUDIT_FILE"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+        <!-- Main audit log -->
+        <file>${LOG_PATH}/audit.log</file>
+
+        <!-- Daily rolling -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/audit-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <!-- JSON ONLY (Audit compliance) -->
+        <encoder>
+            <pattern>%msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- ============================= -->
+    <!-- AUDIT LOGGER (AspectJ uses this) -->
+    <!-- ============================= -->
+    <logger name="AUDIT"
+            level="INFO"
+            additivity="false">
+        <appender-ref ref="AUDIT_FILE"/>
+    </logger>
+
+    <!-- ============================= -->
+    <!-- ROOT LOGGER -->
+    <!-- ============================= -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+</configuration>

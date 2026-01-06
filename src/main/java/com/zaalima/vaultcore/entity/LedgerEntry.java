@@ -27,4 +27,61 @@ public class LedgerEntry {
 
     @Column(nullable = false, updatable = false)
     private Instant createdAt;
+    
+ // REQUIRED BY JPA
+    protected LedgerEntry() {}
+
+    //  CONSTRUCTOR
+    public LedgerEntry(UUID id, UUID accountId,
+                       BigDecimal amount, String entryType,
+                       Instant createdAt) {
+        this.id = id;
+        this.accountId = accountId;
+        this.amount = amount;
+        this.entryType = entryType;
+        this.createdAt = createdAt;
+    }
+
+	public UUID getId() {
+		return id;
+	}
+
+	public void setId(UUID id) {
+		this.id = id;
+	}
+
+	public UUID getAccountId() {
+		return accountId;
+	}
+
+	public void setAccountId(UUID accountId) {
+		this.accountId = accountId;
+	}
+
+	public BigDecimal getAmount() {
+		return amount;
+	}
+
+	public void setAmount(BigDecimal amount) {
+		this.amount = amount;
+	}
+
+	public String getEntryType() {
+		return entryType;
+	}
+
+	public void setEntryType(String entryType) {
+		this.entryType = entryType;
+	}
+
+	public Instant getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Instant createdAt) {
+		this.createdAt = createdAt;
+	}
+    
+    
+    
 }
