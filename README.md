@@ -47,13 +47,3 @@ Portfolio dashboard with dynamic charts
 Interactive UI providing audit and transaction feedback
 
 Fully responsive design for desktop and mobile
-
-🌱 Future Enhancements
-
-Real-time backend API integration for transactions and statements
-
-Enhanced authentication flows (register, forgot password)
-
-Advanced dashboard analytics & interactive charts
-
-Accessibility improvements & robust error handling
